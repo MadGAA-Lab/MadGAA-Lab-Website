@@ -1,13 +1,13 @@
 # MadGAA-Lab Website
 
-MadGAA Lab 官方網站。
+Official website for MadGAA Lab.
 
-## 專案結構
+## Project Structure
 
-- `index.html` - 主頁面
-- `logos/` - Logo 資源
-- `picture/` - 圖片資源
+- `index.html` - Main page
+- `logos/` - Logo assets
+- `picture/` - Image assets
 
-## 本地預覽
+## Local Preview
 
-直接用瀏覽器開啟 `index.html` 即可預覽。
+Open `index.html` in a browser to preview locally.
