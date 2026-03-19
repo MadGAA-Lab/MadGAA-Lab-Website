@@ -123,6 +123,32 @@
   }
   .theme-toggle:hover { background: var(--tag-bg); color: var(--text-primary); }
 
+  .nav-hamburger {
+    display: none;
+    width: 36px; height: 36px;
+    border: 1px solid var(--border); border-radius: 6px;
+    background: transparent; color: var(--text-primary);
+    cursor: pointer; align-items: center; justify-content: center;
+    font-size: 18px;
+  }
+  .nav-mobile {
+    display: none;
+    position: fixed; top: 72px; left: 0; right: 0;
+    background: var(--nav-bg); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 24px 24px; z-index: 99;
+    flex-direction: column; gap: 8px;
+  }
+  .nav-mobile.open { display: flex; }
+  .nav-mobile a {
+    padding: 12px 0; font-size: 15px;
+    color: var(--text-secondary); text-decoration: none;
+    border-bottom: 1px solid var(--border-light);
+  }
+  .nav-mobile a:last-child { border-bottom: none; }
+  .nav-mobile a:hover { color: var(--text-primary); }
+  .nav-mobile .nav-cta { margin-top: 8px; text-align: center; padding: 12px; border-radius: 8px; }
+
   /* Ambient light orbs + grain (match homepage) */
   .ambient {
     position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden;
@@ -262,6 +288,7 @@
     .page-content { padding: 100px 24px 60px; }
     .page-title { font-size: 28px; }
     .nav-links { display: none; }
+    .nav-hamburger { display: flex; }
   }
 </style>
 </head>
@@ -287,8 +314,16 @@
     <li><a href="capabilities.html">Capabilities</a></li>
     <li><a href="https://github.com/MadGAA-Lab" target="_blank" class="nav-cta">GitHub →</a></li>
   </ul>
+  <button class="nav-hamburger" id="navHamburger" aria-label="Menu">☰</button>
   <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
 </nav>
+<div class="nav-mobile" id="navMobile">
+  <a href="index.html">Home</a>
+  <a href="team.html">Team</a>
+  <a href="projects.html">Projects</a>
+  <a href="capabilities.html">Capabilities</a>
+  <a href="https://github.com/MadGAA-Lab" target="_blank" class="nav-cta">GitHub →</a>
+</div>
 
 <main class="page-content">
   <header class="page-header">
@@ -402,6 +437,13 @@
 
   const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 20));
+
+  const hamburger = document.getElementById('navHamburger');
+  const navMobile = document.getElementById('navMobile');
+  if (hamburger && navMobile) {
+    hamburger.addEventListener('click', () => navMobile.classList.toggle('open'));
+    navMobile.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navMobile.classList.remove('open')));
+  }
 </script>
 
 </body>
