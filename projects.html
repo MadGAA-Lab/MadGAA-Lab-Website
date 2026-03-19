@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projects | MadGAA-LAB</title>
+<link rel="icon" href="logos/MadGAA_light.jpg" type="image/jpeg">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap');
+
+  :root {
+    --bg: #f7f6f3;
+    --surface: #ffffff;
+    --nav-bg: rgba(247, 246, 243, 0.88);
+    --border: #e4e2dc;
+    --text-primary: #353538;
+    --text-secondary: #6e6c66;
+    --text-muted: #7e7a74;
+    --accent-color: #2d6be4;
+    --accent-border: #c3d6fa;
+    --tag-bg: #eeece7;
+    --tag-text: #727068;
+    --card-hover: #f2f1ed;
+    --featured-bg: #f4f2ee;
+    --featured-hover: #edeae4;
+    --radius-md: 12px;
+    --radius-lg: 20px;
+    --transition: 0.4s cubic-bezier(0.37, 0, 0.63, 1);
+  }
+
+  html.dark {
+    --bg: #0d0d0e;
+    --surface: #161618;
+    --nav-bg: rgba(13, 13, 14, 0.90);
+    --border: #2c2c30;
+    --text-primary: #f8f8f5;
+    --text-secondary: #b5b1aa;
+    --text-muted: #8e8b86;
+    --accent-color: #5b8def;
+    --accent-border: #1e3258;
+    --tag-bg: #202024;
+    --tag-text: #b5b1aa;
+    --card-hover: #1c1c20;
+    --featured-bg: #191919;
+    --featured-hover: #1f1f23;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text-primary);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 20px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--nav-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--text-primary);
+  }
+  .nav-logo img { height: 36px; width: 36px; object-fit: cover; border-radius: 50%; }
+  html .logo-dark { display: none; }
+  html .logo-light { display: block; }
+  html.dark .logo-dark { display: block; }
+  html.dark .logo-light { display: none; }
+
+  .nav-logo-text {
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: -0.2px;
+    color: var(--text-primary);
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 13px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text-primary); }
+  .nav-cta {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--accent-color) !important;
+    border: 1px solid var(--accent-border);
+    padding: 7px 16px;
+    border-radius: 99px;
+    transition: all 0.2s !important;
+  }
+  .nav-cta:hover {
+    background: var(--accent-color) !important;
+    color: #ffffff !important;
+    border-color: var(--accent-color) !important;
+  }
+
+  .theme-toggle {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    transition: all 0.2s;
+  }
+  .theme-toggle:hover { background: var(--tag-bg); color: var(--text-primary); }
+
+  .page-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 120px 48px 80px;
+  }
+
+  .page-header {
+    margin-bottom: 48px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+  .page-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent-color);
+    margin-bottom: 8px;
+  }
+  .page-title {
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: -1px;
+    line-height: 1.1;
+  }
+  .page-count {
+    font-size: 13px;
+    color: var(--text-muted);
+    font-weight: 400;
+  }
+
+  /* Projects Grid */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+
+  @media (max-width: 700px) {
+    .projects-grid { grid-template-columns: 1fr; }
+    .page-content { padding: 100px 24px 60px; }
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+  }
+
+  /* Project Card */
+  .project-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    background: var(--surface);
+    padding: 32px 28px;
+    transition: background var(--transition);
+    position: relative;
+  }
+
+  .project-card:hover { background: var(--card-hover); }
+
+  .project-card.featured {
+    grid-column: 1 / -1;
+    background: var(--featured-bg);
+  }
+
+  .project-card.featured:hover { background: var(--featured-hover); }
+
+  .project-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+  }
+
+  .project-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--accent-color);
+  }
+
+  .project-arrow {
+    font-size: 16px;
+    color: var(--accent-color);
+    transition: transform 0.25s, color 0.25s;
+  }
+
+  .project-card:hover .project-arrow {
+    transform: translate(3px, -3px);
+    color: var(--text-primary);
+  }
+
+  .project-card h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+    letter-spacing: -0.4px;
+    line-height: 1.25;
+  }
+
+  .project-card p {
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    font-weight: 300;
+    margin-bottom: 20px;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+
+  .tag {
+    font-size: 11px;
+    padding: 3px 9px;
+    border-radius: 4px;
+    background: var(--tag-bg);
+    color: var(--tag-text);
+    border: 1px solid var(--border);
+    letter-spacing: 0.2px;
+    font-weight: 400;
+  }
+
+  footer {
+    padding: 32px 48px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .footer-left { font-weight: 600; color: var(--text-primary); }
+  .footer-right {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+  .footer-right a { color: var(--text-secondary); text-decoration: none; }
+  .footer-right a:hover { color: var(--text-primary); }
+
+  @media (max-width: 700px) {
+    nav { padding: 16px 24px; }
+    .page-content { padding: 100px 24px 60px; }
+    .page-title { font-size: 28px; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="index.html" class="nav-logo">
+    <img src="logos/MadGAA_dark.jpg" alt="MadGAA-LAB Logo" class="logo-dark">
+    <img src="logos/MadGAA_light.jpg" alt="MadGAA-LAB Logo" class="logo-light">
+    <span class="nav-logo-text">MadGAA-LAB</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="team.html">Team</a></li>
+    <li><a href="projects.html">Projects</a></li>
+    <li><a href="capabilities.html">Capabilities</a></li>
+    <li><a href="https://github.com/MadGAA-Lab" target="_blank" class="nav-cta">GitHub →</a></li>
+  </ul>
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
+</nav>
+
+<main class="page-content">
+  <header class="page-header">
+    <div>
+      <div class="page-eyebrow">Work</div>
+      <h1 class="page-title">Projects</h1>
+    </div>
+    <span class="page-count">7 projects</span>
+  </header>
+
+  <div class="projects-grid">
+
+    <div class="project-card featured">
+      <div class="project-meta">
+        <span class="project-label">Flagship Platform</span>
+      </div>
+      <h3>GAA Simulation Platform</h3>
+      <p>The world's first cross-industry adversarial training simulation platform. Replaces expensive human role-players with intelligent AI agents — enabling scalable, measurable professional training for hospitals, banks, insurers, and contact centers. Built by a team with both clinical expertise and deep AI engineering capability.</p>
+      <div class="tags">
+        <span class="tag">Multi-Agent</span>
+        <span class="tag">LoRA</span>
+        <span class="tag">Digital Twin</span>
+        <span class="tag">RAG</span>
+        <span class="tag">Cross-Industry</span>
+      </div>
+    </div>
+
+    <a href="https://github.com/MadGAA-Lab/OSCE-Project" target="_blank" class="project-card">
+      <div class="project-meta">
+        <span class="project-label">Healthcare</span>
+        <span class="project-arrow">↗</span>
+      </div>
+      <h3>OSCE-Project</h3>
+      <p>Medical dialogue evaluation framework inspired by Objective Structured Clinical Examinations. Simulates 64 patient personas measuring Empathy, Persuasion, and Safety.</p>
+      <div class="tags">
+        <span class="tag">Python</span>
+        <span class="tag">MIT License</span>
+        <span class="tag">Multi-Agent</span>
+        <span class="tag">LLM-as-Judge</span>
+      </div>
+    </a>
+
+    <a href="https://github.com/MadGAA-Lab/FHIR-Agent" target="_blank" class="project-card">
+      <div class="project-meta">
+        <span class="project-label">Healthcare</span>
+        <span class="project-arrow">↗</span>
+      </div>
+      <h3>FHIR-Agent</h3>
+      <p>An LLM agents framework for interacting with FHIR databases, enabling structured clinical data retrieval and reasoning.</p>
+      <div class="tags">
+        <span class="tag">Python</span>
+        <span class="tag">FHIR</span>
+        <span class="tag">Healthcare</span>
+      </div>
+    </a>
+
+    <a href="https://github.com/MadGAA-Lab/OSCE-AgentBeats-Leaderboard" target="_blank" class="project-card">
+      <div class="project-meta">
+        <span class="project-label">Benchmark</span>
+        <span class="project-arrow">↗</span>
+      </div>
+      <h3>OSCE-AgentBeats Leaderboard</h3>
+      <p>Public leaderboard for the OSCE evaluator within the AgentBeats challenge ecosystem. Compare medical agent performance across standardized clinical scenarios.</p>
+      <div class="tags">
+        <span class="tag">Python</span>
+        <span class="tag">MIT License</span>
+        <span class="tag">Benchmark</span>
+      </div>
+    </a>
+
+    <a href="https://github.com/MadGAA-Lab/AgentBeats_Security_Arena_Defender" target="_blank" class="project-card">
+      <div class="project-meta">
+        <span class="project-label">Security</span>
+        <span class="project-arrow">↗</span>
+      </div>
+      <h3>AgentBeats Security Arena</h3>
+      <p>Adversarial security testing framework for AI agents. Evaluates robustness and safety against prompt injection and manipulation attacks.</p>
+      <div class="tags">
+        <span class="tag">Python</span>
+        <span class="tag">Security</span>
+        <span class="tag">Red-Teaming</span>
+      </div>
+    </a>
+
+    <a href="https://github.com/MadGAA-Lab/OSCE-Real-Time-Voice-Project" target="_blank" class="project-card">
+      <div class="project-meta">
+        <span class="project-label">Voice AI</span>
+        <span class="project-arrow">↗</span>
+      </div>
+      <h3>OSCE Real-Time Voice</h3>
+      <p>Real-time voice-based clinical examination system extending the OSCE framework with speech interaction for realistic doctor-patient dialogue evaluation.</p>
+      <div class="tags">
+        <span class="tag">Python</span>
+        <span class="tag">Voice AI</span>
+        <span class="tag">Real-Time</span>
+      </div>
+    </a>
+
+    <div class="project-card">
+      <div class="project-meta">
+        <span class="project-label">Research</span>
+      </div>
+      <h3>Model Training & Distillation</h3>
+      <p>End-to-end LLM fine-tuning and knowledge distillation pipelines for domain-specific medical AI models. Building smaller, faster, and more accurate clinical language models.</p>
+      <div class="tags">
+        <span class="tag">Fine-Tuning</span>
+        <span class="tag">Distillation</span>
+        <span class="tag">LLM Training</span>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <div class="footer-left">MadGAA-LAB</div>
+  <div class="footer-right">
+    <a href="https://github.com/MadGAA-Lab" target="_blank">GitHub</a>
+    <span>© 2026 MadGAA-LAB</span>
+  </div>
+</footer>
+
+<script>
+  const html = document.documentElement;
+  const toggle = document.getElementById('themeToggle');
+  function applyTheme(dark) {
+    html.classList.toggle('dark', dark);
+    toggle.textContent = dark ? '☀️' : '🌙';
+  }
+  const stored = localStorage.getItem('theme');
+  applyTheme(stored ? stored === 'dark' : true);
+  toggle.addEventListener('click', () => {
+    const isDark = !html.classList.contains('dark');
+    applyTheme(isDark);
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  });
+
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 20));
+</script>
+
+</body>
+</html>
