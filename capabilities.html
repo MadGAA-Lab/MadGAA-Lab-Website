@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MadGAA AI Capability Overview | MadGAA-LAB</title>
+<link rel="icon" href="logos/MadGAA_light.jpg" type="image/jpeg">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap');
+
+  :root {
+    --bg: #f7f6f3;
+    --surface: #ffffff;
+    --nav-bg: rgba(247, 246, 243, 0.88);
+    --border: #e4e2dc;
+    --text-primary: #353538;
+    --text-secondary: #6e6c66;
+    --text-muted: #7e7a74;
+    --accent-color: #2d6be4;
+    --accent-soft: #e8effd;
+    --accent-border: #c3d6fa;
+    --accent-text: #1d55c4;
+    --tag-bg: #eeece7;
+    --tag-text: #727068;
+    --radius-md: 12px;
+    --transition: 0.4s cubic-bezier(0.37, 0, 0.63, 1);
+  }
+
+  html.dark {
+    --bg: #0d0d0e;
+    --surface: #161618;
+    --nav-bg: rgba(13, 13, 14, 0.90);
+    --border: #2c2c30;
+    --text-primary: #f8f8f5;
+    --text-secondary: #b5b1aa;
+    --text-muted: #8e8b86;
+    --accent-color: #5b8def;
+    --accent-soft: #131c2e;
+    --accent-border: #1e3258;
+    --accent-text: #7aa8f8;
+    --tag-bg: #202024;
+    --tag-text: #b5b1aa;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text-primary);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 20px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--nav-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--text-primary);
+  }
+  .nav-logo img { height: 36px; width: 36px; object-fit: cover; border-radius: 50%; }
+  html .logo-dark { display: none; }
+  html .logo-light { display: block; }
+  html.dark .logo-dark { display: block; }
+  html.dark .logo-light { display: none; }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 13px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text-primary); }
+  .nav-cta {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--accent-color) !important;
+    border: 1px solid var(--accent-border);
+    padding: 7px 16px;
+    border-radius: 99px;
+    transition: all 0.2s !important;
+  }
+  .nav-cta:hover {
+    background: var(--accent-color) !important;
+    color: #ffffff !important;
+    border-color: var(--accent-color) !important;
+  }
+
+  .theme-toggle {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    transition: all 0.2s;
+  }
+  .theme-toggle:hover { background: var(--tag-bg); color: var(--text-primary); }
+
+  .page-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 120px 48px 80px;
+  }
+
+  .page-header {
+    margin-bottom: 48px;
+  }
+  .page-eyebrow {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--accent-color);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .page-title {
+    font-size: 36px;
+    font-weight: 700;
+    letter-spacing: -1px;
+    line-height: 1.2;
+    margin-bottom: 8px;
+  }
+  .page-subtitle {
+    font-size: 16px;
+    color: var(--text-secondary);
+    font-weight: 400;
+  }
+
+  .cap-section {
+    margin-bottom: 48px;
+  }
+  .cap-section h2 {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .cap-section h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 24px 0 8px;
+  }
+  .cap-section p {
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+  }
+  .cap-section ul {
+    margin: 12px 0 12px 24px;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    font-size: 15px;
+  }
+  .cap-section li { margin-bottom: 4px; }
+
+  .cap-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 24px;
+    margin-bottom: 20px;
+  }
+  .cap-card h3 { margin-top: 0; }
+
+  footer {
+    padding: 32px 48px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .footer-left { font-weight: 600; color: var(--text-primary); }
+  .footer-right {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+  .footer-right a { color: var(--text-secondary); text-decoration: none; }
+  .footer-right a:hover { color: var(--text-primary); }
+
+  @media (max-width: 700px) {
+    nav { padding: 16px 24px; }
+    .page-content { padding: 100px 24px 60px; }
+    .page-title { font-size: 28px; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="index.html" class="nav-logo">
+    <img src="logos/MadGAA_dark.jpg" alt="MadGAA-LAB Logo" class="logo-dark">
+    <img src="logos/MadGAA_light.jpg" alt="MadGAA-LAB Logo" class="logo-light">
+    <span class="nav-logo-text">MadGAA-LAB</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="index.html#team">Team</a></li>
+    <li><a href="index.html#projects">Projects</a></li>
+    <li><a href="capabilities.html">Capabilities</a></li>
+    <li><a href="https://github.com/MadGAA-Lab" target="_blank" class="nav-cta">GitHub →</a></li>
+  </ul>
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
+</nav>
+
+<main class="page-content">
+  <header class="page-header">
+    <div class="page-eyebrow">AI Capability Overview</div>
+    <h1 class="page-title">MadGAA AI Capability Overview</h1>
+    <p class="page-subtitle">AI Research Lab</p>
+  </header>
+
+  <section class="cap-section">
+    <h2>Positioning</h2>
+    <p>MadGaa specializes in AI workload design, model distillation, and hardware-aware optimization for next-generation AI compute architectures.</p>
+    <p>The team focuses on preparing real-world AI workloads and optimized models that can validate and run efficiently on emerging AI hardware platforms.</p>
+  </section>
+
+  <section class="cap-section">
+    <h2>Core Capabilities</h2>
+
+    <div class="cap-card">
+      <h3>AI Workload Development</h3>
+      <p>Development of real-world AI workloads used for system validation.</p>
+      <p><strong>Examples include:</strong></p>
+      <ul>
+        <li>real-time object detection</li>
+        <li>video action recognition</li>
+        <li>LLM-based summarization systems</li>
+        <li>monitoring and event detection pipelines</li>
+      </ul>
+      <p>These workloads are designed to evaluate AI inference performance in real deployment environments.</p>
+    </div>
+
+    <div class="cap-card">
+      <h3>Model Distillation & Optimization</h3>
+      <p>MadGaa adapts large AI models for efficient deployment on constrained compute systems.</p>
+      <p><strong>Capabilities include:</strong></p>
+      <ul>
+        <li>knowledge distillation from large foundation models</li>
+        <li>model compression for efficient inference</li>
+        <li>domain-specific fine-tuning</li>
+        <li>latency and memory optimization</li>
+      </ul>
+      <p>These techniques enable models to run on edge AI systems and specialized accelerators.</p>
+    </div>
+
+    <div class="cap-card">
+      <h3>Hardware-Aware AI Optimization</h3>
+      <p>MadGaa optimizes AI models to match the characteristics of specific compute architectures.</p>
+      <p><strong>Key areas include:</strong></p>
+      <ul>
+        <li>operator compatibility validation</li>
+        <li>model architecture adaptation</li>
+        <li>tensor and batch optimization</li>
+        <li>inference throughput tuning</li>
+      </ul>
+      <p>This enables efficient deployment on platforms such as:</p>
+      <ul>
+        <li>GPU inference systems</li>
+        <li>edge AI accelerators</li>
+        <li>custom AI compute hardware</li>
+      </ul>
+    </div>
+
+    <div class="cap-card">
+      <h3>AI Benchmarking & System Validation</h3>
+      <p>MadGaa prepares AI workloads for system-level benchmarking and hardware validation.</p>
+      <p><strong>Capabilities include:</strong></p>
+      <ul>
+        <li>workload profiling</li>
+        <li>latency and throughput measurement</li>
+        <li>compute and memory demand analysis</li>
+        <li>evaluation frameworks for AI inference systems</li>
+      </ul>
+      <p>These benchmarks help hardware teams evaluate realistic AI performance on new compute platforms.</p>
+    </div>
+  </section>
+
+  <section class="cap-section">
+    <h2>Collaboration Role</h2>
+    <p>In hardware–AI co-design projects, MadGaa contributes by:</p>
+    <ul>
+      <li>defining AI workloads for hardware validation</li>
+      <li>preparing optimized AI models for deployment</li>
+      <li>designing inference pipelines and system interfaces</li>
+      <li>supporting benchmarking and system performance evaluation</li>
+    </ul>
+    <p>This ensures that new AI hardware platforms can be validated using practical AI workloads and real-world deployment scenarios.</p>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-left">MadGAA-LAB</div>
+  <div class="footer-right">
+    <a href="https://github.com/MadGAA-Lab" target="_blank">GitHub</a>
+    <span>© 2026 MadGAA-LAB</span>
+  </div>
+</footer>
+
+<script>
+  const html = document.documentElement;
+  const toggle = document.getElementById('themeToggle');
+  function applyTheme(dark) {
+    html.classList.toggle('dark', dark);
+    toggle.textContent = dark ? '☀️' : '🌙';
+  }
+  const stored = localStorage.getItem('theme');
+  applyTheme(stored ? stored === 'dark' : true);
+  toggle.addEventListener('click', () => {
+    const isDark = !html.classList.contains('dark');
+    applyTheme(isDark);
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  });
+
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 20));
+</script>
+
+</body>
+</html>
