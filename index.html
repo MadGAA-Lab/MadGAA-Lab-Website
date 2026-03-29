@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MadGAA-LAB | Home</title>
-<link rel="icon" href="logos/MadGAA_light.jpg" type="image/jpeg">
+<link rel="icon" href="logos/logo.png" type="image/png">
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Noto+Sans+TC:wght@300;400;500;700&display=swap');
 
@@ -119,16 +119,13 @@
 
   .nav-logo img {
     height: 36px;
-    width: 36px;
-    object-fit: cover;
-    border-radius: 50%;
+    width: auto;
+    max-width: 140px;
+    object-fit: contain;
+    object-position: left center;
+    border-radius: 8px;
     display: block;
   }
-
-  html .logo-dark { display: none; }
-  html .logo-light { display: block; }
-  html.dark .logo-dark { display: block; }
-  html.dark .logo-light { display: none; }
 
   .nav-logo-text {
     font-size: 15px;
@@ -139,10 +136,10 @@
 
   /* Hero logo */
   .hero-logo {
-    width: 80px;
-    height: 80px;
-    object-fit: cover;
-    border-radius: 50%;
+    height: 72px;
+    width: auto;
+    max-width: 220px;
+    object-fit: contain;
     margin-bottom: 28px;
     display: block;
   }
@@ -428,6 +425,13 @@
   @media (max-width: 900px) {
     .team-grid { grid-template-columns: repeat(2, 1fr); }
   }
+  .team-grid-single {
+    grid-template-columns: 1fr;
+    max-width: 680px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   @media (max-width: 580px) {
     .team-grid { grid-template-columns: 1fr; }
     .hero { padding: 120px 24px 60px; }
@@ -540,6 +544,15 @@
     letter-spacing: 0.2px;
     font-weight: 400;
   }
+
+  .section-cta {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--accent-color);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .section-cta:hover { color: var(--accent-text); }
 
   /* ── Divider ── */
   .divider {
@@ -932,8 +945,7 @@
 <!-- Nav -->
 <nav id="nav">
   <a href="index.html" class="nav-logo">
-    <img src="logos/MadGAA_dark.jpg" alt="MadGAA-LAB Logo" class="logo-dark">
-    <img src="logos/MadGAA_light.jpg" alt="MadGAA-LAB Logo" class="logo-light">
+    <img src="logos/logo.png" alt="MadGAA-LAB Logo">
     <span class="nav-logo-text">MadGAA-LAB</span>
   </a>
   <ul class="nav-links">
@@ -958,8 +970,7 @@
   <img src="picture/image.png" alt="" class="hero-bg-img" aria-hidden="true">
 
 <div class="hero fade-up visible">
-  <img src="logos/MadGAA_dark.jpg" alt="MadGAA-LAB" class="hero-logo logo-dark">
-  <img src="logos/MadGAA_light.jpg" alt="MadGAA-LAB" class="hero-logo logo-light">
+  <img src="logos/logo.png" alt="MadGAA-LAB" class="hero-logo">
   <div class="hero-eyebrow">AI Research Lab</div>
   <h1>Mad<em>GAA</em><br>Lab</h1>
   <p class="hero-desc">AI agents are transforming every industry — but enterprises still need trained professionals to guide them. MadGAA-LAB builds adversarial simulation environments that prepare your team before they go live, using intelligent AI agents across healthcare, finance, insurance, and customer service.</p>
@@ -993,6 +1004,40 @@
     <span class="marquee-item"><span class="dot"></span> LLM-as-Judge</span>
   </div>
 </div>
+
+<!-- Team spotlight -->
+<section class="section fade-up">
+  <header class="section-header">
+    <div>
+      <div class="section-label">People</div>
+      <h2 class="section-title">Team spotlight</h2>
+    </div>
+    <a href="team.html" class="section-cta">View all →</a>
+  </header>
+  <div class="team-grid team-grid-single">
+    <div class="card">
+      <div class="card-header">
+        <div class="avatar">YC</div>
+        <div class="name-block">
+          <h3>Ya-Pei Chien</h3>
+        </div>
+      </div>
+      <div class="role">Brand Marketing &amp; Omnichannel Consultant · Ex–Brand Marketing Manager · Ex–Bank Sinopac MA</div>
+      <div class="affiliations">
+        <span class="affil">Freelance Consultant</span>
+        <span class="affil">Project Mars</span>
+        <span class="affil">Bank Sinopac</span>
+        <span class="affil">National Central University</span>
+      </div>
+      <p class="desc">Full-stack marketing leader across banking, consumer hardware, and independent consulting. At Project Mars, directed omnichannel strategy for 20+ e‑commerce routes and lifted annual revenue about 23% (NT$65M → NT$80M) while scaling influencer and O2O programs. At Bank Sinopac’s integrated planning desk, ran digital segmentation campaigns reaching roughly 380K users, helped shape the bank’s “Fong me” loyalty IP, and contributed to FinanceAsia’s Best Sustainable Bank in Taiwan (2023). M.A. in Industrial Economics from NCU (GPA 4.23/4.3, top of class) with strong data, KAM, and event-led growth experience.</p>
+      <div class="tags">
+        <span class="tag">Omnichannel Marketing</span>
+        <span class="tag">FinTech &amp; ESG</span>
+        <span class="tag">Brand Growth</span>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- Footer -->
 <footer>
