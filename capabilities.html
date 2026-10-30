@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MadGAA AI Capability Overview | MadGAA-LAB</title>
+<meta name="description" content="MadGAA-LAB is an open research lab building multi-agent simulation and evaluation tools for healthcare AI. Code, benchmarks, and findings are public.">
+<title>Research | MadGAA-LAB</title>
 <link rel="icon" href="logos/logo.png" type="image/png">
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap');
@@ -266,6 +267,8 @@
     margin-bottom: 20px;
   }
   .cap-card h3 { margin-top: 0; }
+  .cap-section a { color: var(--accent-color); text-decoration: none; }
+  .cap-section a:hover { text-decoration: underline; }
 
   footer {
     padding: 32px 48px;
@@ -314,7 +317,7 @@
     <li><a href="index.html">Home</a></li>
     <li><a href="team.html">Team</a></li>
     <li><a href="projects.html">Projects</a></li>
-    <li><a href="capabilities.html">Capabilities</a></li>
+    <li><a href="capabilities.html">Research</a></li>
     <li><a href="https://github.com/MadGAA-Lab" target="_blank" class="nav-cta">GitHub →</a></li>
   </ul>
   <button class="nav-hamburger" id="navHamburger" aria-label="Menu">☰</button>
@@ -324,94 +327,88 @@
   <a href="index.html">Home</a>
   <a href="team.html">Team</a>
   <a href="projects.html">Projects</a>
-  <a href="capabilities.html">Capabilities</a>
+  <a href="capabilities.html">Research</a>
   <a href="https://github.com/MadGAA-Lab" target="_blank" class="nav-cta">GitHub →</a>
 </div>
 
 <main class="page-content">
   <header class="page-header">
-    <div class="page-eyebrow">AI Capability Overview</div>
-    <h1 class="page-title">MadGAA AI Capability Overview</h1>
-    <p class="page-subtitle">AI Research Lab</p>
+    <div class="page-eyebrow">Research Areas</div>
+    <h1 class="page-title">What we study</h1>
+    <p class="page-subtitle">Open Research Lab</p>
   </header>
 
   <section class="cap-section">
-    <h2>Positioning</h2>
-    <p>MadGaa specializes in AI workload design, model distillation, and hardware-aware optimization for next-generation AI compute architectures.</p>
-    <p>The team focuses on preparing real-world AI workloads and optimized models that can validate and run efficiently on emerging AI hardware platforms.</p>
+    <h2>Focus</h2>
+    <p>MadGAA-LAB studies how AI agents behave in high-stakes, human-facing settings — starting with healthcare — and how to measure that behavior reliably.</p>
+    <p>We publish our tools, scenarios, and results openly so that others can reproduce, challenge, and build on them.</p>
   </section>
 
   <section class="cap-section">
-    <h2>Core Capabilities</h2>
+    <h2>Research Areas</h2>
 
     <div class="cap-card">
-      <h3>AI Workload Development</h3>
-      <p>Development of real-world AI workloads used for system validation.</p>
-      <p><strong>Examples include:</strong></p>
+      <h3>Multi-Agent Clinical Simulation</h3>
+      <p>Simulated patients, clinicians, and examiners that interact through dialogue, used to train and test medical AI agents before real-world use.</p>
       <ul>
-        <li>real-time object detection</li>
-        <li>video action recognition</li>
-        <li>LLM-based summarization systems</li>
-        <li>monitoring and event detection pipelines</li>
+        <li>patient persona design and adversarial scenarios</li>
+        <li>OSCE-style structured clinical examinations</li>
+        <li>real-time voice interaction</li>
       </ul>
-      <p>These workloads are designed to evaluate AI inference performance in real deployment environments.</p>
+      <p>Related projects: <a href="projects.html">OSCE-Project, OSCE Real-Time Voice</a></p>
     </div>
 
     <div class="cap-card">
-      <h3>Model Distillation & Optimization</h3>
-      <p>MadGaa adapts large AI models for efficient deployment on constrained compute systems.</p>
-      <p><strong>Capabilities include:</strong></p>
+      <h3>Evaluation &amp; Benchmarks</h3>
+      <p>Methods for scoring agent behavior on empathy, persuasion, safety, and task success, with public leaderboards for fair comparison.</p>
       <ul>
-        <li>knowledge distillation from large foundation models</li>
-        <li>model compression for efficient inference</li>
-        <li>domain-specific fine-tuning</li>
-        <li>latency and memory optimization</li>
+        <li>LLM-as-judge rubrics and their reliability</li>
+        <li>standardized scenario sets</li>
+        <li>open leaderboards</li>
       </ul>
-      <p>These techniques enable models to run on edge AI systems and specialized accelerators.</p>
+      <p>Related projects: <a href="projects.html">OSCE-AgentBeats Leaderboard</a></p>
     </div>
 
     <div class="cap-card">
-      <h3>Hardware-Aware AI Optimization</h3>
-      <p>MadGaa optimizes AI models to match the characteristics of specific compute architectures.</p>
-      <p><strong>Key areas include:</strong></p>
+      <h3>Healthcare Data Agents</h3>
+      <p>Agents that retrieve and reason over structured clinical records using interoperability standards.</p>
       <ul>
-        <li>operator compatibility validation</li>
-        <li>model architecture adaptation</li>
-        <li>tensor and batch optimization</li>
-        <li>inference throughput tuning</li>
+        <li>FHIR database querying</li>
+        <li>retrieval-augmented clinical reasoning</li>
       </ul>
-      <p>This enables efficient deployment on platforms such as:</p>
-      <ul>
-        <li>GPU inference systems</li>
-        <li>edge AI accelerators</li>
-        <li>custom AI compute hardware</li>
-      </ul>
+      <p>Related projects: <a href="projects.html">FHIR-Agent</a></p>
     </div>
 
     <div class="cap-card">
-      <h3>AI Benchmarking & System Validation</h3>
-      <p>MadGaa prepares AI workloads for system-level benchmarking and hardware validation.</p>
-      <p><strong>Capabilities include:</strong></p>
+      <h3>Agent Safety &amp; Red-Teaming</h3>
+      <p>Testing how agents hold up against prompt injection, manipulation, and other adversarial pressure.</p>
       <ul>
-        <li>workload profiling</li>
-        <li>latency and throughput measurement</li>
-        <li>compute and memory demand analysis</li>
-        <li>evaluation frameworks for AI inference systems</li>
+        <li>attack and defense scenarios</li>
+        <li>robustness evaluation</li>
       </ul>
-      <p>These benchmarks help hardware teams evaluate realistic AI performance on new compute platforms.</p>
+      <p>Related projects: <a href="projects.html">AgentBeats Security Arena</a></p>
+    </div>
+
+    <div class="cap-card">
+      <h3>Efficient Models</h3>
+      <p>Making capable models small and fast enough to run on local and edge hardware.</p>
+      <ul>
+        <li>knowledge distillation and domain fine-tuning</li>
+        <li>hardware-aware optimization and inference benchmarking</li>
+      </ul>
+      <p>Related projects: <a href="projects.html">Model Training &amp; Distillation</a></p>
     </div>
   </section>
 
   <section class="cap-section">
-    <h2>Collaboration Role</h2>
-    <p>In hardware–AI co-design projects, MadGaa contributes by:</p>
+    <h2>Work with us</h2>
+    <p>We welcome collaborators from clinical, academic, and engineering backgrounds:</p>
     <ul>
-      <li>defining AI workloads for hardware validation</li>
-      <li>preparing optimized AI models for deployment</li>
-      <li>designing inference pipelines and system interfaces</li>
-      <li>supporting benchmarking and system performance evaluation</li>
+      <li>propose a joint study or evaluation</li>
+      <li>contribute code, scenarios, or rubrics on GitHub</li>
+      <li>host a student project or internship</li>
     </ul>
-    <p>This ensures that new AI hardware platforms can be validated using practical AI workloads and real-world deployment scenarios.</p>
+    <p>Reach us at <a href="mailto:hello@madgaalab.org">hello@madgaalab.org</a> or on <a href="https://github.com/MadGAA-Lab" target="_blank">GitHub</a>.</p>
   </section>
 </main>
 
